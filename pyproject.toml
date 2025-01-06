@@ -1,0 +1,21 @@
+[project]
+name = "paper-yj-wrf-streamflow"
+version = "0.1.0"
+description = "Evaluation of atmospheric model parameterization schemes with river network routing and streamflow observations: A case study of the Yarlung Zangbo River on the Tibetan Plateau"
+requires-python = ">=3.13"
+dependencies = [
+  "h5netcdf>=1.5",
+  "matplotlib>=3.10",
+  "netcdf4>=1.7.2",
+  "numba>=0.61",
+  "numpy>=2.1",
+  "polars>=1.21",
+  "pyarrow>=20.0.0",
+  "shapely>=2.1.0",
+  "xarray>=2025.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]

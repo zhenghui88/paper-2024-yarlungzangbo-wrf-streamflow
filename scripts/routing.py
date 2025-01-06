@@ -64,7 +64,9 @@ def routing(
     qin = np.zeros_like(q)
     qinp = np.zeros_like(q)
 
-    to = np.where(np.isnan(rivnet[:, "to"].to_numpy()), -1, rivnet[:, "to"].to_numpy()).astype(np.int32)
+    to = np.where(
+        np.isnan(rivnet[:, "to"].to_numpy()), -1, rivnet[:, "to"].to_numpy()
+    ).astype(np.int32)
     length = np.array(rivnet[:, "length"], dtype=np.float32)
 
     celerity = np.full_like(q, 3.0, dtype=np.float32)
@@ -79,7 +81,7 @@ def routing(
             routing_step(to, length, dt_step, q, qp, qin, qinp, ql, celerity, w)
             q, qp = qp, q
             qin, qinp = qinp, qin
-        qout[i, :] = q
+        qout[i, :] = qp
     qout = qlat.select(pl.col("tm")).hstack(
         pl.from_numpy(
             qout.astype(np.float32),
@@ -90,7 +92,9 @@ def routing(
     return qout
 
 
-def run_case(rivnet: pl.DataFrame, qlat: pl.DataFrame, c: dict[str, float], outfile: Path):
+def run_case(
+    rivnet: pl.DataFrame, qlat: pl.DataFrame, c: dict[str, float], outfile: Path
+):
     w = 0.3
     qout = routing(12, rivnet, qlat, c, w)
     qout.write_parquet(outfile)
@@ -113,13 +117,18 @@ def calculate_skill(qobs, qout, start, stop):
     assert qobs.width == 2, "qobs must have two columns"
     assert qout.width == 2, "qout must have two columns"
     qobsout = (
-        qobs.filter((pl.col("tm") >= start) & (pl.col("tm") <= stop)).join(qout, on="tm", how="inner").drop_nulls()
+        qobs.filter((pl.col("tm") >= start) & (pl.col("tm") <= stop))
+        .join(qout, on="tm", how="inner")
+        .drop_nulls()
     )
     beta = qobsout[:, 2].mean() / qobsout[:, 1].mean()
     alpha = qobsout[:, 2].std() / qobsout[:, 1].std()
     rho = qobsout[:, 1:].corr()[0, 1]
     kge = 1.0 - float(np.sqrt((1 - rho) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2))
-    nse = 1 - float((qobsout[:, 2] - qobsout[:, 1]).pow(2).sum() / (qobsout[:, 1] - qobsout[:, 1].mean()).pow(2).sum())
+    nse = 1 - float(
+        (qobsout[:, 2] - qobsout[:, 1]).pow(2).sum()
+        / (qobsout[:, 1] - qobsout[:, 1].mean()).pow(2).sum()
+    )
     return Skill(nse, kge, alpha, beta, rho)
 
 
@@ -137,17 +146,19 @@ if __name__ == "__main__":
     QOBS_FILE = DATAROOT.joinpath("gauge_q_obs.parquet")
     qobs = pl.read_parquet(QOBS_FILE)
 
-    nexp = 5
+    nexp = 7
 
     gauges = ["Lazi", "Nugesha", "Yangcun", "Nuxia"]
-    celerity = pl.DataFrame([pl.Series(g, [np.nan for _ in range(nexp)], pl.Float32) for g in gauges])
+    celerity = pl.DataFrame(
+        [pl.Series(g, [np.nan for _ in range(nexp)], pl.Float32) for g in gauges]
+    )
     celerity_guesses = [float(x) for x in np.arange(0.1, 6.1, 0.1)]
 
     for gauge in gauges:
         args = []
         qoutroot = DATAROOT.joinpath("qout", f"qout_{gauge.lower()}")
         qoutroot.mkdir(parents=True, exist_ok=True)
-        for exp in range(5):
+        for exp in range(7):
             qlat = pl.read_parquet(DATAROOT.joinpath("qlat", f"qlat_{exp:02d}.parquet"))
             for c in celerity_guesses:
                 desfile = qoutroot.joinpath(f"exp{exp}_{c:.2f}.parquet")
@@ -156,10 +167,18 @@ if __name__ == "__main__":
                         rivnet,
                         qlat,
                         {
-                            "Lazi": celerity[exp, "Lazi"] if np.isfinite(celerity[exp, "Lazi"]) else c,
-                            "Nugesha": celerity[exp, "Nugesha"] if np.isfinite(celerity[exp, "Nugesha"]) else c,
-                            "Yangcun": celerity[exp, "Yangcun"] if np.isfinite(celerity[exp, "Yangcun"]) else c,
-                            "Nuxia": celerity[exp, "Nuxia"] if np.isfinite(celerity[exp, "Nuxia"]) else c,
+                            "Lazi": celerity[exp, "Lazi"]
+                            if np.isfinite(celerity[exp, "Lazi"])
+                            else c,
+                            "Nugesha": celerity[exp, "Nugesha"]
+                            if np.isfinite(celerity[exp, "Nugesha"])
+                            else c,
+                            "Yangcun": celerity[exp, "Yangcun"]
+                            if np.isfinite(celerity[exp, "Yangcun"])
+                            else c,
+                            "Nuxia": celerity[exp, "Nuxia"]
+                            if np.isfinite(celerity[exp, "Nuxia"])
+                            else c,
                         },
                         desfile,
                     )
@@ -169,13 +188,17 @@ if __name__ == "__main__":
             for _ in results:
                 pass
 
-        gaugereach = str(gaugeinfo.filter(pl.col("gauge") == gauge).select(pl.col("reach")).item()).lower()
+        gaugereach = str(
+            gaugeinfo.filter(pl.col("gauge") == gauge).select(pl.col("reach")).item()
+        ).lower()
         kges: dict[int, tuple[list[float], list[Skill]]] = {}
         for filepath in sorted(qoutroot.glob("exp*.parquet")):
             exp = int(filepath.stem.split("_")[0].removeprefix("exp"))
             cc = float(filepath.stem.split("_")[-1])
             qout = pl.read_parquet(filepath)
-            skill = calculate_skill(qobs["tm", gauge], qout["tm", gaugereach], DATETIME_START, DATETIME_END)
+            skill = calculate_skill(
+                qobs["tm", gauge], qout["tm", gaugereach], DATETIME_START, DATETIME_END
+            )
             if exp not in kges:
                 kges[exp] = ([], [])
             kges[exp][0].append(cc)
