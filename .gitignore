@@ -1,7 +1,11 @@
 ## editors and os settings
+data/
+
 .DS_Store
 .vscode
-data/
+.zed
+.python-version
+uv.lock
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -325,4 +329,3 @@ venv.bak/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
