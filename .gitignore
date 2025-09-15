@@ -1,11 +1,14 @@
 ## editors and os settings
 data/
+datasource/
 
 .DS_Store
 .vscode
 .zed
 .python-version
 uv.lock
+.ropeproject/
+.mypy_cache/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

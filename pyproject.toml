@@ -4,18 +4,26 @@ version = "0.1.0"
 description = "Evaluation of atmospheric model parameterization schemes with river network routing and streamflow observations: A case study of the Yarlung Zangbo River on the Tibetan Plateau"
 requires-python = ">=3.13"
 dependencies = [
-  "h5netcdf>=1.5",
-  "matplotlib>=3.10",
-  "netcdf4>=1.7.2",
+  "h5netcdf>=1",
+  "matplotlib>=3",
+  "netcdf4>=1",
   "numba>=0.61",
   "numpy>=2.1",
-  "polars>=1.21",
-  "pyarrow>=20.0.0",
-  "shapely>=2.1.0",
-  "xarray>=2025.1",
+  "polars>=1",
+  "pyarrow>=20",
+  "rasterio>=1",
+  "scipy>=1",
+  "shapely>=2",
+  "xarray>=2025",
 ]
 
 [dependency-groups]
-dev = [
-    "ipykernel>=6.29.5",
-]
+dev = ["ipykernel>=6"]
+
+[tool.pyright]
+extraPaths = [".venv/lib/python3.13/site-packages"]
+typeCheckingMode = "recommended"
+reportAny = false
+reportUnusedCallResult = false
+reportExplicitAny = false
+reportUnknownArgumentType = false

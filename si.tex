@@ -1,0 +1,120 @@
+\documentclass[draft,wrr]{agutexSI2019}
+\usepackage{graphicx}
+\graphicspath{ {./fig/} }
+
+\setkeys{Gin}{draft=false}
+
+% Author names in capital letters:
+% \authorrunninghead{BALES ET AL.}
+
+% Shorter version of title entered in capital letters:
+%\titlerunninghead{SHORT TITLE}
+
+\authoraddr{Corresponding author: Hui Zheng (hzheng\_iap@outlook.com)}
+
+\begin{document}
+
+\title{Supporting Information for "Evaluation of atmospheric models using parsimonious flow network routing model and streamflow observations over mountainous regions: A case study of the Yarlung Zangbo River on the Tibetan Plateau"}
+
+%
+%DOI: 10.1002/%insert paper number here%
+
+\authors{Heng Yang\affil{1}, Shuanglong Chen\affil{2}, Qingyun Bian\affil{3}, and Hui Zheng\affil{3}}
+
+\affiliation{1}{Science and Technology Research Institute, China Three Gorges Corporation, Beijing 100038, China}
+\affiliation{2}{Baihetan Hydropower Plant, China Three Gorges Corporation, Sichuan 615421, China}
+\affiliation{3}{Institute of Atmospheric Physics, Chinese Academy of Sciences, Beijing 100029, China}
+
+\begin{article}
+
+  \noindent\textbf{Contents of this file}
+  %%%Remove or add items as needed%%%
+  \begin{enumerate}
+    \item Tables S1
+    \item Figures S1 to S8
+  \end{enumerate}
+
+\end{article}
+\clearpage
+
+\begin{table}[h!]
+  \settablenum{S1}
+  \doublerulesep 0.3pt
+  % \tabcolsep 7.8mm
+  % \setlength{\tabcolsep}{15pt}
+  \renewcommand{\arraystretch}{1}
+  \caption{Spearman's correlation coefficient between the rank of the median correlation coefficient measured by streamflow and the rank measured by other observations or skill measures across the WRF experiments.}\label{tab:kge_rank}
+  \vspace*{5mm}
+  \begin{tabular*}{160mm}{ccccc}
+    \hline
+    Gauge & Calibration & Runoff & Precipitation (Temporal) & Precipitation (Spatial) \\
+    \hline
+    Lazi & 0.99 & 0.88 & -0.76 & -0.70 \\
+    Nugesha & 0.97 & 0.28 & 0.37 & 0.21 \\
+    Lhasa & 0.97 & 0.24 & 0.57 & 0.32 \\
+    Yangcun & 0.95 & 0.22 & 0.31 & 0.15 \\
+    Gengzhang & 0.99 & -0.79 & 0.52 & 0.82 \\
+    Nuxia & 0.90 & 0.31 & 0.34 & 0.02 \\
+    \hline
+  \end{tabular*}
+  \renewcommand{\arraystretch}{1}
+\end{table}
+
+\clearpage
+
+\begin{figure}
+  \setfigurenum{S1}
+  \noindent\includegraphics[width=160mm]{precipitation_coefficient_of_variation.pdf}
+  \caption{Same as Figure~3, but for precipitation.}
+  \label{fig:precipitation_coefficient_of_variation}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S2}
+  \noindent\includegraphics[width=160mm]{rnswe_time_series.pdf}
+  \caption{Time series of the averaged accumulated runoff and snow water equivalent (SWE) over the Yarlung Zangbo River basin for each WRF experiment. The solid lines represent the accumulated runoff, and the dashed lines represent the SWE.}
+  \label{fig:rnswe_time_series}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S3}
+  \noindent\includegraphics[width=160mm]{pretdiff_coefficient_of_variation.pdf}
+  \caption{Same as Figure~3, but for the precipitation minus evapotranspiration.}
+  \label{fig:pretdiff_coefficient_of_variation}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S4}
+  \noindent\includegraphics[width=160mm]{optimal_cc_outlier.pdf}
+  \caption{Violinplots of optimal correlation coefficient across the six river gauges for each WRF experiment. The distribution of the optimal correlation coefficient for each WRF experiment is tested for its difference from the rest of the experiments using a student t-test. The experiments that are significantly lower than the rest in the correlation coefficient at the 0.05 significance level are marked with red asterisks.}
+  \label{fig:optimal_cc_outlier}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S5}
+  \noindent\includegraphics[width=160mm]{streamflow_rho.pdf}
+  \caption{Same as Figure 6, but for correlation coefficient.}
+  \label{fig:rho_significance}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S6}
+  \noindent\includegraphics[width=160mm]{rho_difference_significance.pdf}
+  \caption{Same as Figure 7, but for correlation coefficient.}
+  \label{fig:kge_significance}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S7}
+  \noindent\includegraphics[width=160mm]{rank_rho_relationship.pdf}
+  \caption{Same as Figure 8, but for correlation coefficient. Dots represent the rank of the optimal correlation coefficient. Plus signs for the runoff correlation coefficient. Squares for the temporal correlation coefficient of basin-averaged precipitation. Upper triangles for the spatial correlation coefficient of precipitation climatology.}
+  \label{fig:rho_rank}
+\end{figure}
+
+\begin{figure}
+  \setfigurenum{S8}
+  \noindent\includegraphics[width=160mm]{streamflow_passthrough.pdf}
+  \caption{Same as Figure 5, but for area-weighted aggregation of runoff.}
+  \label{fig:streamflow_passthrough}
+\end{figure}
+\end{document}
