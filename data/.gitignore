@@ -1,0 +1,24 @@
+
+# due to license issue, we cannot share the following files:
+gauge_q_obs.parquet
+gauge_q_obs_all.parquet
+
+# the following files are too large to be shared, and can be found in the data repository:
+gpm.nc
+snow.nc
+wrf_data.nc
+
+qlat/qlat_*.parquet
+qout_passthrough/qout_*.parquet
+qout_calibration/qout_*.parquet
+qout_ensemble/qout_*.parquet
+qout_ensemble/river_parameter_*.arrow
+
+qout_ensemble/*.tar
+
+# the following files are for testing and debugging, and are not needed for the main analysis:
+gauge_q_loc_all.csv
+snow_all.nc
+river_network/river_network_all.gpkg
+river_network/river_network_outlets.txt
+river_network/river_network_rivers.txt
