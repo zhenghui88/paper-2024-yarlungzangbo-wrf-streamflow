@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="72mm"
+    height="55mm"
+    viewBox="0 0 720 550"
+>
+    <defs>
+        <style>
+            .txt { font-family: Arial, Helvetica, sans-serif; font-size: 12pt; fill: #000000; }
+            .label { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; fill: #555555;
+            background-color: white;}
+            .line { stroke: #000000; stroke-width: 1pt; fill: none; }
+
+            /* Color and Shape classes */
+            .input { fill: #E3F2FD; stroke: #1565C0; stroke-width: 1.5pt; } /* Light Blue */
+            .model { fill: #E8F5E9; stroke: #2E7D32; stroke-width: 1.5pt; } /* Light Green */
+            .method { fill: #FFF3E0; stroke: #EF6C00; stroke-width: 1.5pt; } /* Light Orange */
+            .process { fill: #F3E5F5; stroke: #7B1FA2; stroke-width: 1.5pt; } /* Light Purple */
+            .result { fill: #FFEBEE; stroke: #C62828; stroke-width: 1.5pt; } /* Light Red */
+        </style>
+        <marker
+            id="arrow"
+            viewBox="0 0 10 10"
+            refX="9"
+            refY="5"
+            markerWidth="6pt"
+            markerHeight="6pt"
+            markerUnits="userSpaceOnUse"
+            orient="auto"
+            overflow="visible"
+        >
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#000000" />
+        </marker>
+    </defs>
+
+    <!-- Top source: ERA5 (Input) -->
+    <!-- Width 640, Center 360 -> x=40 -->
+    <rect class="input" x="40" y="10" width="640" height="32" rx="16" />
+    <text
+        class="txt"
+        x="360"
+        y="26"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >ERA5</text>
+
+    <!-- So we need a vertical line down from ERA5, a horizontal spreader bar, and then 3 vertical
+    lines down to the WRF EXPs -->
+
+    <!-- Vertical line down from ERA5 (bottom at y=42) -->
+    <path class="line" d="M 360 42 L 360 62" />
+
+    <!-- Horizontal spreader bar -->
+    <path class="line" d="M 140 62 L 580 62" />
+
+    <!-- Three vertical lines down to WRF EXPs (top at y=78) -->
+    <path class="line" d="M 140 62 L 140 78" marker-end="url(#arrow)" />
+    <path class="line" d="M 360 62 L 360 78" marker-end="url(#arrow)" />
+    <path class="line" d="M 580 62 L 580 78" marker-end="url(#arrow)" />
+
+    <!-- Column 1: WRF EXP 1 (Center 140) -->
+    <!-- Width 180 -> x = 140 - 90 = 50 -->
+    <rect class="model" x="50" y="78" width="180" height="32" rx="4" />
+    <text
+        class="txt"
+        x="140"
+        y="94"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >WRF EXP 1</text>
+
+    <!-- Arrow with Label: Runoff -->
+    <path class="line" d="M 140 110 L 140 150" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="146"
+        y="130"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Runoff</text>
+
+    <!-- Calibration Box: Width 180, x=50 -->
+    <rect class="method" x="50" y="150" width="180" height="62" rx="4" />
+    <text
+        class="txt"
+        x="140"
+        y="181"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="140" dy="-2ex">Calibration of the</tspan>
+        <tspan x="140" dy="2ex">Muskingum</tspan>
+        <tspan x="140" dy="2ex">parameter</tspan>
+    </text>
+
+    <!-- Column 2: WRF EXP... (Center 360) -->
+    <!-- Width 180 -> x = 360 - 90 = 270 -->
+    <rect class="model" x="270" y="78" width="180" height="32" rx="4" />
+    <text
+        class="txt"
+        x="360"
+        y="94"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >WRF EXP…</text>
+
+    <!-- Arrow with Label: Runoff -->
+    <path class="line" d="M 360 110 L 360 150" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="366"
+        y="130"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Runoff</text>
+
+    <!-- Calibration Box: Width 180, x=270 -->
+    <rect class="method" x="270" y="150" width="180" height="62" rx="4" />
+    <text
+        class="txt"
+        x="360"
+        y="181"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="360" dy="-2ex">Calibration of the</tspan>
+        <tspan x="360" dy="2ex">Muskingum</tspan>
+        <tspan x="360" dy="2ex">parameter</tspan>
+    </text>
+
+    <!-- Column 3: WRF EXP N (Center 580) -->
+    <!-- Width 180 -> x = 580 - 90 = 490 -->
+    <rect class="model" x="490" y="78" width="180" height="32" rx="4" />
+    <text
+        class="txt"
+        x="580"
+        y="94"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >WRF EXP N</text>
+
+    <!-- Arrow with Label: Runoff -->
+    <path class="line" d="M 580 110 L 580 150" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="586"
+        y="130"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Runoff</text>
+
+    <!-- Calibration Box: Width 180, x=490 -->
+    <rect class="method" x="490" y="150" width="180" height="62" rx="4" />
+    <text
+        class="txt"
+        x="580"
+        y="181"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="580" dy="-2ex">Calibration of the</tspan>
+        <tspan x="580" dy="2ex">Muskingum</tspan>
+        <tspan x="580" dy="2ex">parameter</tspan>
+    </text>
+
+    <!-- Merge from three calibrations to fitting -->
+    <path class="line" d="M 140 212 L 140 232" />
+    <path class="line" d="M 360 212 L 360 232" />
+    <path class="line" d="M 580 212 L 580 232" />
+    <path class="line" d="M 140 232 L 580 232" />
+    <path class="line" d="M 360 232 L 360 246" marker-end="url(#arrow)" />
+
+    <!-- Fitting (Process) -->
+    <!-- Width 640, Center 360 -> x=40 -->
+    <rect class="process" x="40" y="246" width="640" height="34" rx="10" />
+    <text
+        class="txt"
+        x="360"
+        y="263"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        Fitting the calibrated celerity to a log-normal distribution
+    </text>
+
+    <path class="line" d="M 360 280 L 360 298" marker-end="url(#arrow)" />
+
+    <!-- Draw samples (Process) -->
+    <!-- Width 640, Center 360 -> x=40 -->
+    <rect class="process" x="40" y="298" width="640" height="34" rx="10" />
+    <text
+        class="txt"
+        x="360"
+        y="315"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        Draw 100 independent random samples from the distribution
+    </text>
+
+    <!-- Split to three ensembles -->
+    <path class="line" d="M 360 332 L 360 352" />
+    <path class="line" d="M 140 352 L 580 352" />
+    <path class="line" d="M 140 352 L 140 366" marker-end="url(#arrow)" />
+    <path class="line" d="M 360 352 L 360 366" marker-end="url(#arrow)" />
+    <path class="line" d="M 580 352 L 580 366" marker-end="url(#arrow)" />
+
+    <!-- 100 Muskingum Simulations -->
+    <!-- Column 1: Center 140, Width 180 -> x=50 -->
+    <rect class="process" x="50" y="366" width="180" height="40" rx="4" />
+    <text
+        class="txt"
+        x="140"
+        y="386"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="140" dy="-1ex">100 Muskingum</tspan>
+        <tspan x="140" dy="2ex">Simulations</tspan>
+    </text>
+
+    <!-- Column 2: Center 360, Width 180 -> x=270 -->
+    <rect class="process" x="270" y="366" width="180" height="40" rx="4" />
+    <text
+        class="txt"
+        x="360"
+        y="386"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="360" dy="-1ex">100 Muskingum</tspan>
+        <tspan x="360" dy="2ex">Simulations</tspan>
+    </text>
+
+    <!-- Column 3: Center 580, Width 180 -> x=490 -->
+    <rect class="process" x="490" y="366" width="180" height="40" rx="4" />
+    <text
+        class="txt"
+        x="580"
+        y="386"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        <tspan x="580" dy="-1ex">100 Muskingum</tspan>
+        <tspan x="580" dy="2ex">Simulations</tspan>
+    </text>
+
+    <!-- Arrow with Label: Streamflow -->
+    <path class="line" d="M 140 406 L 140 446" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="146"
+        y="426"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Streamflow</text>
+
+    <path class="line" d="M 360 406 L 360 446" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="366"
+        y="426"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Streamflow</text>
+
+    <path class="line" d="M 580 406 L 580 446" marker-end="url(#arrow)" />
+    <text
+        class="label"
+        x="586"
+        y="426"
+        text-anchor="start"
+        dominant-baseline="middle"
+    >Streamflow</text>
+
+    <!-- 100 Skill Scores -->
+    <!-- Column 1: Center 140, Width 180 -> x=50 -->
+    <rect class="result" x="50" y="446" width="180" height="30" rx="4" />
+    <text
+        class="txt"
+        x="140"
+        y="461"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >100 Skill Scores</text>
+
+    <!-- Column 2: Center 360, Width 180 -> x=270 -->
+    <rect class="result" x="270" y="446" width="180" height="30" rx="4" />
+    <text
+        class="txt"
+        x="360"
+        y="461"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >100 Skill Scores</text>
+
+    <!-- Column 3: Center 580, Width 180 -> x=490 -->
+    <rect class="result" x="490" y="446" width="180" height="30" rx="4" />
+    <text
+        class="txt"
+        x="580"
+        y="461"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >100 Skill Scores</text>
+
+    <!-- Merge to final statistical test -->
+    <path class="line" d="M 140 476 L 140 492" />
+    <path class="line" d="M 360 476 L 360 492" />
+    <path class="line" d="M 580 476 L 580 492" />
+    <path class="line" d="M 140 492 L 580 492" />
+    <path class="line" d="M 360 492 L 360 506" marker-end="url(#arrow)" />
+
+    <!-- Statistical Test (Result) -->
+    <!-- Width 640, Center 360 -> x=40 -->
+    <rect class="result" x="40" y="506" width="640" height="34" rx="10" />
+    <text
+        class="txt"
+        x="360"
+        y="523"
+        text-anchor="middle"
+        dominant-baseline="middle"
+    >
+        Statistical test for differences in skill scores
+    </text>
+</svg>
