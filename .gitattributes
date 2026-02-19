@@ -1,0 +1,9 @@
+* text eof=lf
+*.docx binary
+*.gpkg binary
+*.pptx binary
+*.arrow binary
+*.parquet binary
+*.nc binary
+*.pdf binary
+*.parquet binary
